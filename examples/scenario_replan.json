@@ -1,0 +1,107 @@
+{
+  "name": "replan",
+  "ticks": { "start": 0, "end": 60 },
+  "terminals": [
+    { "terminal_id": "T1", "vessel_id": "V1", "bands": ["ku"], "cooldown": 0 },
+    { "terminal_id": "T2", "vessel_id": "V2", "bands": ["ku"], "cooldown": 0 }
+  ],
+  "exclusions": [],
+  "links": [
+    {
+      "link_id": "SAT1",
+      "version": 1,
+      "windows": [
+        {
+          "kind": "satellite",
+          "band": "ku",
+          "start": 0,
+          "end": 60,
+          "capacity": 1,
+          "footprint": { "lat": 10.0, "lon": 100.5, "radius_km": 300 }
+        }
+      ]
+    },
+    {
+      "link_id": "SAT2",
+      "version": 1,
+      "windows": [
+        {
+          "kind": "satellite",
+          "band": "ku",
+          "start": 30,
+          "end": 60,
+          "capacity": 1,
+          "footprint": { "lat": 10.0, "lon": 100.7, "radius_km": 300 }
+        }
+      ]
+    },
+    {
+      "link_id": "SAT3",
+      "version": 1,
+      "windows": [
+        {
+          "kind": "satellite",
+          "band": "ku",
+          "start": 0,
+          "end": 60,
+          "capacity": 1,
+          "footprint": { "lat": 20.0, "lon": 110.0, "radius_km": 100 }
+        }
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "vessel_id": "V1",
+      "version": 1,
+      "points": [
+        { "tick": 0, "lat": 10.0, "lon": 100.0 },
+        { "tick": 60, "lat": 10.0, "lon": 101.0 }
+      ]
+    },
+    {
+      "vessel_id": "V2",
+      "version": 1,
+      "points": [
+        { "tick": 0, "lat": 20.0, "lon": 110.0 },
+        { "tick": 60, "lat": 20.0, "lon": 110.0 }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "A",
+      "vessel_id": "V1",
+      "priority": 10,
+      "start": 0,
+      "end": 60,
+      "min_hold": 2
+    },
+    {
+      "task_id": "B",
+      "vessel_id": "V2",
+      "priority": 5,
+      "start": 0,
+      "end": 60,
+      "min_hold": 2
+    }
+  ],
+  "script": [
+    {
+      "at": 20,
+      "action": "link_windows",
+      "link_id": "SAT1",
+      "version": 2,
+      "windows": [
+        {
+          "kind": "satellite",
+          "band": "ku",
+          "start": 0,
+          "end": 30,
+          "capacity": 1,
+          "footprint": { "lat": 10.0, "lon": 100.5, "radius_km": 300 }
+        }
+      ]
+    }
+  ]
+}

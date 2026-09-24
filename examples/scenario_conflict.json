@@ -1,0 +1,146 @@
+{
+  "name": "conflict",
+  "ticks": { "start": 0, "end": 50 },
+  "terminals": [
+    { "terminal_id": "T1", "vessel_id": "V1", "bands": ["ku"], "cooldown": 0 },
+    { "terminal_id": "T2", "vessel_id": "V2", "bands": ["ku"], "cooldown": 0 },
+    { "terminal_id": "T3", "vessel_id": "V3", "bands": ["ku"], "cooldown": 0 },
+    { "terminal_id": "T4", "vessel_id": "V4", "bands": ["ku"], "cooldown": 0 }
+  ],
+  "exclusions": [],
+  "links": [
+    {
+      "link_id": "SAT1",
+      "version": 1,
+      "windows": [
+        {
+          "kind": "satellite",
+          "band": "ku",
+          "start": 0,
+          "end": 50,
+          "capacity": 1,
+          "footprint": { "lat": 10.0, "lon": 100.3, "radius_km": 200 }
+        }
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "vessel_id": "V1",
+      "version": 1,
+      "points": [
+        { "tick": 0, "lat": 10.0, "lon": 100.2 },
+        { "tick": 50, "lat": 10.0, "lon": 100.2 }
+      ]
+    },
+    {
+      "vessel_id": "V2",
+      "version": 1,
+      "points": [
+        { "tick": 0, "lat": 10.0, "lon": 100.3 },
+        { "tick": 50, "lat": 10.0, "lon": 100.3 }
+      ]
+    },
+    {
+      "vessel_id": "V3",
+      "version": 1,
+      "points": [
+        { "tick": 0, "lat": 10.0, "lon": 100.4 },
+        { "tick": 50, "lat": 10.0, "lon": 100.4 }
+      ]
+    },
+    {
+      "vessel_id": "V4",
+      "version": 1,
+      "points": [
+        { "tick": 0, "lat": 10.0, "lon": 100.35 },
+        { "tick": 50, "lat": 10.0, "lon": 100.35 }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "LOW",
+      "vessel_id": "V1",
+      "priority": 5,
+      "start": 0,
+      "end": 50,
+      "min_hold": 1
+    }
+  ],
+  "script": [
+    {
+      "at": 10,
+      "action": "task",
+      "task": {
+        "task_id": "HIGH",
+        "vessel_id": "V2",
+        "priority": 50,
+        "start": 10,
+        "end": 30,
+        "min_hold": 1
+      }
+    },
+    {
+      "at": 11,
+      "action": "task",
+      "task": {
+        "task_id": "WAITER",
+        "vessel_id": "V4",
+        "priority": 45,
+        "start": 12,
+        "end": 35,
+        "min_hold": 1
+      }
+    },
+    {
+      "at": 12,
+      "action": "task",
+      "task": {
+        "task_id": "EMERG",
+        "vessel_id": "V3",
+        "priority": 100,
+        "start": 36,
+        "end": 50,
+        "min_hold": 1
+      }
+    },
+    { "at": 13, "action": "confirm", "task_id": "EMERG" },
+    {
+      "at": 14,
+      "action": "task",
+      "task": {
+        "task_id": "NORMAL2",
+        "vessel_id": "V2",
+        "priority": 60,
+        "start": 40,
+        "end": 50,
+        "min_hold": 1
+      }
+    },
+    {
+      "at": 15,
+      "action": "approve",
+      "approval_id": "AP1",
+      "task_id": "EMERG",
+      "requester_task_id": "NORMAL2",
+      "approver": "op1"
+    },
+    {
+      "at": 15,
+      "action": "approve",
+      "approval_id": "AP1",
+      "task_id": "EMERG",
+      "requester_task_id": "NORMAL2",
+      "approver": "op1"
+    },
+    {
+      "at": 16,
+      "action": "approve",
+      "approval_id": "AP1",
+      "task_id": "EMERG",
+      "requester_task_id": "NORMAL2",
+      "approver": "op2"
+    }
+  ]
+}

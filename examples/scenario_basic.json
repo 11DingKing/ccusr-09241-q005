@@ -1,0 +1,73 @@
+{
+  "name": "basic",
+  "ticks": { "start": 0, "end": 60 },
+  "terminals": [
+    { "terminal_id": "T1", "vessel_id": "V1", "bands": ["ku", "vhf"], "cooldown": 2 }
+  ],
+  "exclusions": [],
+  "links": [
+    {
+      "link_id": "GS1",
+      "version": 1,
+      "windows": [
+        {
+          "kind": "ground",
+          "band": "vhf",
+          "start": 0,
+          "end": 20,
+          "capacity": 2,
+          "footprint": { "lat": 10.0, "lon": 100.1, "radius_km": 300 }
+        }
+      ]
+    },
+    {
+      "link_id": "SAT1",
+      "version": 1,
+      "windows": [
+        {
+          "kind": "satellite",
+          "band": "ku",
+          "start": 15,
+          "end": 40,
+          "capacity": 1,
+          "footprint": { "lat": 10.0, "lon": 100.4, "radius_km": 400 }
+        }
+      ]
+    },
+    {
+      "link_id": "SAT2",
+      "version": 1,
+      "windows": [
+        {
+          "kind": "satellite",
+          "band": "ku",
+          "start": 35,
+          "end": 60,
+          "capacity": 1,
+          "footprint": { "lat": 10.0, "lon": 100.8, "radius_km": 400 }
+        }
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "vessel_id": "V1",
+      "version": 1,
+      "points": [
+        { "tick": 0, "lat": 10.0, "lon": 100.0 },
+        { "tick": 60, "lat": 10.0, "lon": 101.0 }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "A",
+      "vessel_id": "V1",
+      "priority": 10,
+      "start": 0,
+      "end": 60,
+      "min_hold": 3
+    }
+  ],
+  "script": []
+}
