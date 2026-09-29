@@ -1,0 +1,54 @@
+{
+  "scenario": {
+    "resources": [
+      {"id": "SAT1", "kind": "satellite", "name": "同步轨道波束1", "capacity": 3},
+      {"id": "GND1", "kind": "terrestrial", "name": "近岸地面覆盖1", "capacity": 1}
+    ],
+    "terminals": [
+      {"id": "A", "name": "搜救1号", "cooldown": 1},
+      {"id": "B", "name": "搜救2号", "cooldown": 0},
+      {"id": "E1", "name": "急救艇甲", "cooldown": 0},
+      {"id": "E2", "name": "急救艇乙", "cooldown": 0},
+      {"id": "N", "name": "补给船", "cooldown": 0}
+    ],
+    "tasks": [
+      {"id": "T_A", "terminal_id": "A", "release": 0, "deadline": 16, "demand": 12, "priority": 2, "min_hold": 2},
+      {"id": "T_B", "terminal_id": "B", "release": 0, "deadline": 16, "demand": 9, "priority": 3, "min_hold": 2},
+      {"id": "T_E1", "terminal_id": "E1", "release": 0, "deadline": 20, "demand": 16, "priority": 1, "emergency": true},
+      {"id": "T_E2", "terminal_id": "E2", "release": 0, "deadline": 20, "demand": 14, "priority": 1, "emergency": true},
+      {"id": "T_N", "terminal_id": "N", "release": 0, "deadline": 20, "demand": 4, "priority": 9}
+    ],
+    "horizon": 20
+  },
+  "predictions": [
+    {
+      "at": 0,
+      "version": 1,
+      "windows": [
+        {"window_uid": "a-sat", "terminal_id": "A", "resource_id": "SAT1", "start": 0, "end": 10},
+        {"window_uid": "a-gnd", "terminal_id": "A", "resource_id": "GND1", "start": 10, "end": 16},
+        {"window_uid": "b-sat", "terminal_id": "B", "resource_id": "SAT1", "start": 0, "end": 16},
+        {"window_uid": "e1-sat", "terminal_id": "E1", "resource_id": "SAT1", "start": 0, "end": 20},
+        {"window_uid": "e2-sat", "terminal_id": "E2", "resource_id": "SAT1", "start": 0, "end": 20},
+        {"window_uid": "n-sat", "terminal_id": "N", "resource_id": "SAT1", "start": 0, "end": 20}
+      ]
+    },
+    {
+      "at": 6,
+      "version": 2,
+      "windows": [
+        {"window_uid": "a-sat", "terminal_id": "A", "resource_id": "SAT1", "start": 0, "end": 7},
+        {"window_uid": "a-gnd", "terminal_id": "A", "resource_id": "GND1", "start": 7, "end": 16},
+        {"window_uid": "b-sat", "terminal_id": "B", "resource_id": "SAT1", "start": 0, "end": 16},
+        {"window_uid": "e1-sat", "terminal_id": "E1", "resource_id": "SAT1", "start": 0, "end": 20},
+        {"window_uid": "e2-sat", "terminal_id": "E2", "resource_id": "SAT1", "start": 0, "end": 20},
+        {"window_uid": "n-sat", "terminal_id": "N", "resource_id": "SAT1", "start": 0, "end": 20}
+      ]
+    }
+  ],
+  "approvals": [
+    {"at": 9, "request_id": "R1", "approver": "值班长", "task_id": "T_N", "resource_id": "SAT1", "start": 10, "end": 14, "reason": "补给船需在紧急窗口内回传伤情影像"},
+    {"at": 10, "request_id": "R1", "approver": "值班长", "task_id": "T_N", "resource_id": "SAT1", "start": 10, "end": 14, "reason": "补给船需在紧急窗口内回传伤情影像"},
+    {"at": 10, "request_id": "R1", "approver": "搜救指挥", "task_id": "T_N", "resource_id": "SAT1", "start": 10, "end": 14, "reason": "补给船需在紧急窗口内回传伤情影像"}
+  ]
+}
